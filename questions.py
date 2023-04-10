@@ -1,24 +1,49 @@
+import math
 from random import randint
 from os import remove, rename
 
 separator = ','
+question_string = ''
 operand_list = []
 for num in range(5):
-    operand_list[num] = randint(1, 9)
-
+    number = randint(1, 9)
+    operand_list.append(number)
+# print(operand_list)
 operator_list = []
 operator_dictionary = {
     '1': '+',
     '2': '-',
-    '3': '',
+    '3': '/',
     '4': '*'
 }
 for num in range(4):
-    random_operator = operator_dictionary[randint(1, 4)]
-    if (operator_list and operand_list[num - 1] == '**') and random_operator == '**':
+    random_operator = operator_dictionary[f'{randint(1, 4)}']
+    print(f'List: {operator_list}')
+    if operator_list and operator_list[-1] == '**' and random_operator == '**':
+        print(f'####{operand_list[num - 1]} AND {random_operator}#####')
+        print(f'Skipped {num - 1}')
         continue
     else:
-        operator_list[num] = random_operator
+        operator_list.append(random_operator)
+        print(f'appended {random_operator}')
+        print(operator_list)
+
+for operand in operand_list:
+    print(f'question_string: {operand}{operator_list[randint(0, 3)]}')
+    question_string = question_string + f'{operand}{operator_list[randint(0, 3)]}'
+print(f'before: {question_string}')
+question_string = question_string.replace("**", "^").removesuffix(question_string[-1])
+result = math.floor(eval(question_string))
+print(f"res: {result}")
+print(f'What will be the result {question_string} 🤣🤣🤣🤣? ')
+user_guess = input("Enter your answer: ")
+if user_guess is not character:
+    if int(user_guess) == result:
+        print("Congrats🎉🎉🎉 you pass.")
+    else:
+        print("Sorry! You didn't pass😥. Please try again!")
+else:
+    print("Please enter digits only.")
 
 
 
