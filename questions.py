@@ -35,16 +35,15 @@ print(f'before: {question_string}')
 question_string = question_string.replace("**", "^").removesuffix(question_string[-1])
 result = math.floor(eval(question_string))
 print(f"res: {result}")
-print(f'What will be the result {question_string} 🤣🤣🤣🤣? ')
+print(f'What will be the result {question_string} ? ')
 user_guess = input("Enter your answer: ")
-if user_guess is not character:
+if user_guess.isnumeric():
     if int(user_guess) == result:
         print("Congrats🎉🎉🎉 you pass.")
     else:
         print("Sorry! You didn't pass😥. Please try again!")
 else:
     print("Please enter digits only.")
-
 
 
 def get_user_point(user_name):
